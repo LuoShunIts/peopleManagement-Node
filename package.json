@@ -19,6 +19,7 @@
   "homepage": "https://github.com/LuoShunIts/peopleManagement-Node#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "captchapng": "0.0.1",
     "express": "^4.16.3",
     "mongo": "^0.1.0",
     "stemplate": "^0.1.0",
