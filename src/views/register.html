@@ -9,13 +9,17 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/md5.js"></script>
     <title>登录页面</title>
+    <style>
+        .btn-danger {
+            padding: 5px 60px;
+        }
+    </style>
 </head>
 <body>
-<div class="container" style="margin-top:180px; ">
-
+    <div class="container" style="margin-top:180px; ">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
-                <div class="panel-heading">登录学生管理系统</div>
+                <div class="panel-heading">注册</div>
                 <div class="panel-body">
                    <div class="form-horizontal">
                         <div class="form-group">
@@ -31,56 +35,29 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="pwd" class="col-sm-2 control-label">验证码</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="vcode" id="vcodeId" placeholder="请输入验证码">
-                            </div>
-                            <div class="col-sm-3">
-                                <img id="vcodeimgId" src="/account/vcode">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <!-- submit有一个默认的提交行为，不要加上 -->
-                                <!-- <button type="submit" onclick="login()"  class="btn btn-default">登录</button> -->
-                                <button onclick="login()"  class="btn btn-default">登录</button>
-                                &nbsp;&nbsp;
-                                <input  onclick="register();" type="button"  value="注册" class="btn btn-danger">
+                                <input type="button" onclick='register()' value="注册" class="btn btn-danger">
                             </div>
                         </div>
                    </div>
                 </div>
             </div>
-            </div>
-    </div>
-</body>
+        </div>
+    </body>
 <script>
-    // 改变验证码图片
-    $("#vcodeimgId").click(function(){
-        // alert("1111111111")
-        this.src = "/account/vcode?random="+Math.random()
-    })
-    // 去注册页
-    function register(){
-        window.location.href = "/account/register"
-    }
-
-    // 登录
-    function login(){
+    function register() {
         const username = $('#usernameId').val()
         const password = $.md5($('#passwordId').val()+"LSQ@@WML")
         // console.log(password);
-        const vcode = $('#vcodeId').val()
-        $.post('/account/login',{username,password,vcode},data=>{
-            // console.log(data);
+
+        $.post('/account/register',{username,password},data=>{
             if(data.status != 0){
                 alert(data.message)
-                $('#vcodeimgId').attr('src','/account/vcode?random='+Math.random())
             }else {
-                window.location.href = "/studentmanager/list"
+                location.href = '/account/login'
             }
         })
-    }
 
+    }
 </script>
 </html>

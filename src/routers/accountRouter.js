@@ -9,5 +9,8 @@ const accountCTRL = require(path.join(__dirname,'../controllers/accountControlle
 
 accountRouter.get('/login',accountCTRL.getLoginPage)
 accountRouter.get('/vcode',accountCTRL.getImageVcode)
+accountRouter.get('/register',accountCTRL.getRegister)
+accountRouter.post('/register',accountCTRL.register)
+accountRouter.post('/login',accountCTRL.login)
 
 module.exports = accountRouter
